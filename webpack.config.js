@@ -9,7 +9,7 @@ const dist = path.join(__dirname, "dist");
 const baseConfig = {
 	context: __dirname,
 	entry: {
-		summernote: path.join(src, "summernote.js")
+		summernote: path.join(src, "Summernote.jsx")
 	},
 	output: {
 		path: dist,
@@ -35,16 +35,11 @@ const baseConfig = {
 		"bootstrap/js/dropdown": "bootstrap/js/dropdown",
 		"bootstrap/js/tooltip": "bootstrap/js/tooltip"
 	}],
-	plugins: [
-		new webpack.ProvidePlugin({
-			$: "jquery",
-			jQuery: "jquery"
-		})
-	],
+	plugins: [],
 	module: {
 		loaders: [
 			{
-				test: /\.js?$/,
+				test: /\.jsx$|\.js$/,
 				exclude: /(node_modules)/,
 				loader: "babel",
 				query: {
@@ -71,7 +66,6 @@ const productionConfig = Object.assign({}, baseConfig, {
 });
 
 productionConfig.plugins = baseConfig.plugins.concat([
-	new webpack.NoErrorsPlugin(),
 	new webpack.DefinePlugin({
 		process: {
 			env: {

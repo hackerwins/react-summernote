@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("jquery"), require("bootstrap/js/modal"), require("bootstrap/js/dropdown"), require("bootstrap/js/tooltip"), require("react"));
+		module.exports = factory(require("bootstrap/js/modal"), require("bootstrap/js/dropdown"), require("bootstrap/js/tooltip"), require("jquery"), require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define(["jquery", "bootstrap/js/modal", "bootstrap/js/dropdown", "bootstrap/js/tooltip", "react"], factory);
+		define(["bootstrap/js/modal", "bootstrap/js/dropdown", "bootstrap/js/tooltip", "jquery", "react"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactSummernote"] = factory(require("jquery"), require("bootstrap/js/modal"), require("bootstrap/js/dropdown"), require("bootstrap/js/tooltip"), require("react"));
+		exports["ReactSummernote"] = factory(require("bootstrap/js/modal"), require("bootstrap/js/dropdown"), require("bootstrap/js/tooltip"), require("jquery"), require("react"));
 	else
-		root["ReactSummernote"] = factory(root["jquery"], root["bootstrap/js/modal"], root["bootstrap/js/dropdown"], root["bootstrap/js/tooltip"], root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_8__) {
+		root["ReactSummernote"] = factory(root["bootstrap/js/modal"], root["bootstrap/js/dropdown"], root["bootstrap/js/tooltip"], root["jquery"], root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,7 +54,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -62,13 +62,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	__webpack_require__(1);
+
 	__webpack_require__(2);
 
 	__webpack_require__(3);
 
 	__webpack_require__(4);
-
-	__webpack_require__(5);
 
 	var _react = __webpack_require__(8);
 
@@ -85,14 +85,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ReactSummernote = function (_React$Component) {
 		_inherits(ReactSummernote, _React$Component);
 
+		_createClass(ReactSummernote, null, [{
+			key: "insertImage",
+			value: function insertImage(url, filename, callback) {
+				this.editor.summernote("insertImage", url, filename, callback);
+			}
+		}, {
+			key: "insertNode",
+			value: function insertNode(node) {
+				this.editor.summernote("insertNode", node);
+			}
+		}, {
+			key: "insertText",
+			value: function insertText(text) {
+				this.editor.summernote("insertText", text);
+			}
+		}]);
+
 		function ReactSummernote(props) {
 			_classCallCheck(this, ReactSummernote);
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ReactSummernote).call(this, props));
 
 			_this.uid = "reactSummernote-" + Date.now();
+			_this.editor = {};
 
-			_this.onImageUpload = _this.onImageUpload.bind(_this);
+			ReactSummernote.insertImage = ReactSummernote.insertImage.bind(_this);
+			ReactSummernote.insertNode = ReactSummernote.insertNode.bind(_this);
+			ReactSummernote.insertText = ReactSummernote.insertText.bind(_this);
 			return _this;
 		}
 
@@ -107,9 +127,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				var focus = _props.focus;
 
 
-				$("#" + this.uid).summernote({
-					height: height, minHeight: minHeight, maxHeight: maxHeight, focus: focus, lang: lang, callbacks: this.callbacks
-				});
+				this.editor = $("#" + this.uid);
+				this.editor.summernote({ height: height, minHeight: minHeight, maxHeight: maxHeight, focus: focus, lang: lang, callbacks: this.callbacks });
 			}
 		}, {
 			key: "shouldComponentUpdate",
@@ -119,12 +138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		}, {
 			key: "componentWillUnmount",
 			value: function componentWillUnmount() {
-				$("#" + this.uid).summernote("destroy");
-			}
-		}, {
-			key: "onImageUpload",
-			value: function onImageUpload() {
-				this.props.onImageUpload(function (url) {});
+				if (this.editor) this.editor.summernote("destroy");
 			}
 		}, {
 			key: "render",
@@ -135,8 +149,15 @@ return /******/ (function(modules) { // webpackBootstrap
 			key: "callbacks",
 			get: function get() {
 				return {
+					onInit: this.props.onInit,
+					onEnter: this.props.onEnter,
+					onFocus: this.props.onFocus,
+					onBlur: this.props.onBlur,
+					onKeyup: this.props.onKeyUp,
+					onKeydown: this.props.onKeyDown,
+					onPaste: this.props.onPaste,
 					onChange: this.props.onChange,
-					onImageUpload: this.onImageUpload
+					onImageUpload: this.props.onImageUpload
 				};
 			}
 		}]);
@@ -152,12 +173,18 @@ return /******/ (function(modules) { // webpackBootstrap
 		minHeight: _react2.default.PropTypes.number,
 		lang: _react2.default.PropTypes.string,
 		placeholder: _react2.default.PropTypes.string,
+		onInit: _react2.default.PropTypes.func,
+		onEnter: _react2.default.PropTypes.func,
+		onFocus: _react2.default.PropTypes.func,
+		onBlur: _react2.default.PropTypes.func,
+		onKeyUp: _react2.default.PropTypes.func,
+		onKeyDown: _react2.default.PropTypes.func,
+		onPaste: _react2.default.PropTypes.func,
 		onChange: _react2.default.PropTypes.func,
 		onImageUpload: _react2.default.PropTypes.func
 	};
 
 	exports.default = ReactSummernote;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
 /* 1 */
@@ -179,12 +206,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ },
-/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -201,7 +222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  /* global define */
 	  if (true) {
 	    // AMD. Register as an anonymous module.
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(5)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if (typeof module === 'object' && module.exports) {
 	    // Node/CommonJS
 	    module.exports = factory(require('jquery'));
@@ -7158,6 +7179,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	}));
 
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ },
 /* 6 */

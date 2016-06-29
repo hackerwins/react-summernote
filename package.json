@@ -1,6 +1,6 @@
 {
   "name": "react-summernote",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Summernote adaptation for react",
   "main": "./dist/summernote.js",
   "repository": {
@@ -24,12 +24,12 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "bootstrap": "3.3.6",
     "codemirror": "5.16.0",
     "summernote-webpack-fix": "0.8.2"
   },
   "peerDependencies": {
     "jquery": "3.0.0",
+    "bootstrap": "3.3.6",
     "react": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0"
   },
