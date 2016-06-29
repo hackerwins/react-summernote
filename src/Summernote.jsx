@@ -3,8 +3,10 @@
 import "bootstrap/js/modal";
 import "bootstrap/js/dropdown";
 import "bootstrap/js/tooltip";
+import "bootstrap/js/popover";
 import "summernote-webpack-fix";
 import "summernote-webpack-fix/dist/summernote.css";
+import "codemirror/lib/codemirror.css";
 import React from "react";
 
 class ReactSummernote extends React.Component {
@@ -32,10 +34,10 @@ class ReactSummernote extends React.Component {
 	}
 
 	componentDidMount() {
-		const { height, minHeight, maxHeight, lang, focus } = this.props;
+		const options = this.props.options;
 
 		this.editor = $(`#${this.uid}`);
-		this.editor.summernote({ height, minHeight, maxHeight, focus, lang, callbacks: this.callbacks });
+		this.editor.summernote({ options, callbacks: this.callbacks });
 	}
 
 	shouldComponentUpdate() {
@@ -67,12 +69,7 @@ class ReactSummernote extends React.Component {
 
 ReactSummernote.propTypes = {
 	value: React.PropTypes.string,
-	focus: React.PropTypes.bool,
-	height: React.PropTypes.number,
-	maxHeight: React.PropTypes.number,
-	minHeight: React.PropTypes.number,
-	lang: React.PropTypes.string,
-	placeholder: React.PropTypes.string,
+	options: React.PropTypes.object,
 	onInit: React.PropTypes.func,
 	onEnter: React.PropTypes.func,
 	onFocus: React.PropTypes.func,

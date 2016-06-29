@@ -1,6 +1,6 @@
 {
   "name": "react-summernote",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Summernote adaptation for react",
   "main": "./dist/summernote.js",
   "repository": {
