@@ -4,6 +4,7 @@ import "bootstrap/js/modal";
 import "bootstrap/js/dropdown";
 import "bootstrap/js/tooltip";
 import "summernote-webpack-fix";
+import "summernote-webpack-fix/dist/summernote.css";
 import React from "react";
 
 class ReactSummernote extends React.Component {

@@ -1,6 +1,6 @@
 {
   "name": "react-summernote",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Summernote adaptation for react",
   "main": "./dist/summernote.js",
   "repository": {
@@ -8,7 +8,8 @@
     "url": "https://github.com/Vnkitaev/react-summernote.git"
   },
   "scripts": {
-    "compile": "webpack --config ./webpack.config.js"
+    "compile": "webpack --config ./webpack.config.js",
+    "compile:production": "webpack --config ./webpack.config.js --production"
   },
   "keywords": [
     "summernote",
@@ -29,9 +30,9 @@
   },
   "peerDependencies": {
     "jquery": "3.0.0",
-    "bootstrap": "3.3.6",
-    "react": "^0.14.0 || ^15.0.0",
-    "react-dom": "^0.14.0 || ^15.0.0"
+    "bootstrap": "^3.3.6",
+    "react": "*",
+    "react-dom": "*"
   },
   "devDependencies": {
     "webpack": "1.13.1",
@@ -39,6 +40,11 @@
     "babel-loader": "6.2.4",
     "babel-preset-es2015": "6.9.0",
     "babel-preset-react": "6.11.1",
+    "url-loader": "0.5.7",
+    "file-loader": "0.9.0",
+    "style-loader": "0.13.1",
+    "css-loader": "0.23.1",
+    "extract-text-webpack-plugin": "1.0.1",
     "eslint": "2.13.1",
     "eslint-config-airbnb": "9.0.1",
     "eslint-plugin-react": "5.2.2",

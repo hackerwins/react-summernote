@@ -2,9 +2,11 @@
 
 const path = require("path");
 const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const src = path.join(__dirname, "src");
 const dist = path.join(__dirname, "dist");
+const extractCSS = new ExtractTextPlugin("[name].css");
 
 const baseConfig = {
 	context: __dirname,
@@ -35,7 +37,9 @@ const baseConfig = {
 		"bootstrap/js/dropdown": "bootstrap/js/dropdown",
 		"bootstrap/js/tooltip": "bootstrap/js/tooltip"
 	}],
-	plugins: [],
+	plugins: [
+		extractCSS
+	],
 	module: {
 		loaders: [
 			{
@@ -45,26 +49,20 @@ const baseConfig = {
 				query: {
 					presets: ["es2015", "react"]
 				}
+			},
+			{
+				test: /\.(css)(\?.+)?$/,
+				loader: extractCSS.extract("style", "css")
+			},
+			{
+				test: /\.(otf|eot|svg|ttf|woff|woff2)(\?.+)?$/,
+				loader: "url-loader?limit=4096&name=[name].[ext]"
 			}
 		]
 	}
 };
 
-const productionConfig = Object.assign({}, baseConfig, {
-	module: {
-		loaders: [
-			{
-				test: /\.js?$/,
-				exclude: /(node_modules)/,
-				loader: "babel",
-				query: {
-					presets: ["es2015", "react", "react-optimize"]
-				}
-			}
-		]
-	}
-});
-
+const productionConfig = Object.assign({}, baseConfig);
 productionConfig.plugins = baseConfig.plugins.concat([
 	new webpack.DefinePlugin({
 		process: {
