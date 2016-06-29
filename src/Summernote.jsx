@@ -35,9 +35,11 @@ class ReactSummernote extends React.Component {
 
 	componentDidMount() {
 		const options = this.props.options;
+		options.callbacks = this.callbacks;
 
 		this.editor = $(`#${this.uid}`);
-		this.editor.summernote({ options, callbacks: this.callbacks });
+		this.editor.summernote(options);
+		this.manageModalScroll(true);
 	}
 
 	shouldComponentUpdate() {
@@ -46,6 +48,19 @@ class ReactSummernote extends React.Component {
 
 	componentWillUnmount() {
 		if (this.editor) this.editor.summernote("destroy");
+		this.manageModalScroll(false);
+	}
+
+	manageModalScroll(mount) {
+		const $body = $("body");
+		let hasClassName = false;
+		if (mount) {
+			$(".note-editor .modal").on("show.bs.modal", () => (hasClassName = $body.hasClass("modal-open")));
+			$(".note-editor .modal").on("hidden.bs.modal", () => $body.toggleClass("modal-open", hasClassName));
+		} else {
+			$(".note-editor .modal").off("show.bs.modal");
+			$(".note-editor .modal").off("hidden.bs.modal");
+		}
 	}
 
 	get callbacks() {

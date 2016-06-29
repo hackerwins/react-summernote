@@ -6,6 +6,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const src = path.join(__dirname, "src");
 const dist = path.join(__dirname, "dist");
+const isProduction = process.env.NODE_ENV === "production";
 const extractCSS = new ExtractTextPlugin("[name].css");
 
 const baseConfig = {
@@ -63,6 +64,7 @@ const baseConfig = {
 };
 
 const productionConfig = Object.assign({}, baseConfig);
+productionConfig.output.filename = "[name].min.js";
 productionConfig.plugins = baseConfig.plugins.concat([
 	new webpack.DefinePlugin({
 		process: {
@@ -81,4 +83,4 @@ productionConfig.plugins = baseConfig.plugins.concat([
 	})
 ]);
 
-module.exports = process.env.NODE_ENV !== "production" ? baseConfig : productionConfig;
+module.exports = !isProduction ? baseConfig : productionConfig;

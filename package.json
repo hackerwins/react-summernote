@@ -1,6 +1,6 @@
 {
   "name": "react-summernote",
-  "version": "0.0.8",
+  "version": "1.0.0-rc2",
   "description": "Summernote adaptation for react",
   "main": "./dist/summernote.js",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "compile": "webpack --config ./webpack.config.js",
-    "compile:production": "webpack --config ./webpack.config.js --production"
+    "compile:production": "NODE_ENV=production webpack --config ./webpack.config.js"
   },
   "keywords": [
     "summernote",
