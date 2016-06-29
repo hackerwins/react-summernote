@@ -1,0 +1,14 @@
+{
+  "extends": "eslint-config-airbnb",
+  "rules": {
+    "react/jsx-indent-props": [2, "tab"],
+    "react/jsx-indent": [2, "tab"],
+    "quotes": [1, "double", "avoid-escape"],
+    "indent": [2, "tab"],
+    "comma-dangle": 0,
+    "max-len": [2, 200, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
+    }]
+  }
+}
