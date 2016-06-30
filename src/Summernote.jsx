@@ -3,8 +3,7 @@
 import "bootstrap/js/modal";
 import "bootstrap/js/dropdown";
 import "bootstrap/js/tooltip";
-import "bootstrap/js/popover";
-import "summernote-webpack-fix";
+import "summernote-webpack-fix/dist/summernote";
 import "summernote-webpack-fix/dist/summernote.css";
 import "codemirror/lib/codemirror.css";
 import React from "react";
@@ -25,7 +24,7 @@ class ReactSummernote extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.uid = `reactSummernote-${Date.now()}`;
+		this.uid = `react-summernote-${Date.now()}`;
 		this.editor = {};
 
 		ReactSummernote.insertImage = ReactSummernote.insertImage.bind(this);

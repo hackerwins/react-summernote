@@ -3,16 +3,15 @@
 const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const src = path.join(__dirname, "src");
 const dist = path.join(__dirname, "dist");
-const isProduction = process.env.NODE_ENV === "production";
-const extractCSS = new ExtractTextPlugin("[name].css");
 
-const baseConfig = {
+module.exports = {
 	context: __dirname,
 	entry: {
-		summernote: path.join(src, "Summernote.jsx")
+		"react-summernote": path.join(src, "Summernote.jsx")
 	},
 	output: {
 		path: dist,
@@ -39,7 +38,14 @@ const baseConfig = {
 		"bootstrap/js/tooltip": "bootstrap/js/tooltip"
 	}],
 	plugins: [
-		extractCSS
+		new webpack.ProvidePlugin({
+			$: "jquery",
+			jQuery: "jquery"
+		}),
+		new CopyWebpackPlugin([{
+			from: "node_modules/summernote-webpack-fix/dist/lang", to: "lang"
+		}]),
+		new ExtractTextPlugin("[name].css")
 	],
 	module: {
 		loaders: [
@@ -53,7 +59,7 @@ const baseConfig = {
 			},
 			{
 				test: /\.(css)(\?.+)?$/,
-				loader: extractCSS.extract("style", "css")
+				loader: ExtractTextPlugin.extract("style", "css")
 			},
 			{
 				test: /\.(otf|eot|svg|ttf|woff|woff2)(\?.+)?$/,
@@ -62,25 +68,3 @@ const baseConfig = {
 		]
 	}
 };
-
-const productionConfig = Object.assign({}, baseConfig);
-productionConfig.output.filename = "[name].min.js";
-productionConfig.plugins = baseConfig.plugins.concat([
-	new webpack.DefinePlugin({
-		process: {
-			env: {
-				NODE_ENV: JSON.stringify("production")
-			}
-		}
-	}),
-	new webpack.optimize.UglifyJsPlugin({
-		output: {
-			comments: false
-		},
-		compress: {
-			drop_console: true
-		}
-	})
-]);
-
-module.exports = !isProduction ? baseConfig : productionConfig;
