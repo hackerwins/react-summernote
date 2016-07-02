@@ -9,8 +9,8 @@ import "codemirror/lib/codemirror.css";
 import React from "react";
 
 class ReactSummernote extends React.Component {
-	static insertImage(url, filename, callback) {
-		this.editor.summernote("insertImage", url, filename, callback);
+	static insertImage(url, filenameOrCallback) {
+		this.editor.summernote("insertImage", url, filenameOrCallback);
 	}
 
 	static insertNode(node) {
