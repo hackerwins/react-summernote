@@ -1,5 +1,5 @@
 # react-summernote
-Summernote adaptation for react (Headache free)
+[Summernote](https://github.com/summernote/summernote) adaptation for react (Headache free)
 
 [![npm version](https://badge.fury.io/js/react-summernote.svg)](https://www.npmjs.com/package/react-summernote)
 
@@ -23,6 +23,7 @@ new webpack.ProvidePlugin({
 import React from "react";
 import ReactSummernote from "react-summernote";
 import "react-summernote/lang/summernote-ru-RU"; // you can import any other locale
+import "react-summernote/dist/react-summernote.css"; // import styles
 
 class RichTextEditor extends React.Component {
 	onChange(content) {
