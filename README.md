@@ -22,6 +22,7 @@ new webpack.ProvidePlugin({
 ```javascript
 import React from "react";
 import ReactSummernote from "react-summernote";
+import "bootstrap/dist/css/bootstrap.css"; // import bootstrap styles
 import "react-summernote/lang/summernote-ru-RU"; // you can import any other locale
 import "react-summernote/dist/react-summernote.css"; // import styles
 
