@@ -22,8 +22,9 @@ new webpack.ProvidePlugin({
 ```javascript
 import React from "react";
 import ReactSummernote from "react-summernote";
-import "bootstrap/dist/css/bootstrap.css"; // import bootstrap styles
 import "react-summernote/lang/summernote-ru-RU"; // you can import any other locale
+
+import "bootstrap/dist/css/bootstrap.css"; // you should import bootstrap.css if you haven't done that before
 import "react-summernote/dist/react-summernote.css"; // import styles
 
 class RichTextEditor extends React.Component {
@@ -38,6 +39,7 @@ class RichTextEditor extends React.Component {
 				options={{
 					lang: "ru-RU",
 					height: 350,
+					dialogsInBody: true,
 					toolbar: [
 						["style", ["style"]],
 						["font", ["bold", "underline", "clear"]],
@@ -74,6 +76,7 @@ onImageUpload | `Function` | handler: `function(files) {}`
 
 ### Static methods
 ```javascript
+reset() // Clear contents and remove all stored history
 insertImage(url, filenameOrCallback) // Insert a image
 insertNode(node) // Insert a element or textnode
 insertText(text) // Insert a text

@@ -9,6 +9,10 @@ import "codemirror/lib/codemirror.css";
 import React from "react";
 
 class ReactSummernote extends React.Component {
+	static reset() {
+		this.editor.summernote("reset");
+	}
+
 	static insertImage(url, filenameOrCallback) {
 		this.editor.summernote("insertImage", url, filenameOrCallback);
 	}
@@ -54,8 +58,12 @@ class ReactSummernote extends React.Component {
 		const $body = $("body");
 		let hasClassName = false;
 		if (mount) {
-			$(".note-editor .modal").on("show.bs.modal", () => (hasClassName = $body.hasClass("modal-open")));
-			$(".note-editor .modal").on("hidden.bs.modal", () => $body.toggleClass("modal-open", hasClassName));
+			$(".note-editor .modal").on("show.bs.modal", () => {
+				hasClassName = $body.hasClass("modal-open");
+			});
+			$(".note-editor .modal").on("hidden.bs.modal", () => {
+				$body.toggleClass("modal-open", hasClassName);
+			});
 		} else {
 			$(".note-editor .modal").off("show.bs.modal");
 			$(".note-editor .modal").off("hidden.bs.modal");
