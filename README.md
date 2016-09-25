@@ -24,7 +24,7 @@ import React from "react";
 import ReactSummernote from "react-summernote";
 import "react-summernote/lang/summernote-ru-RU"; // you can import any other locale
 
-import "bootstrap/dist/css/bootstrap.css"; // you should import bootstrap.css if you haven't done that before
+import "bootstrap/dist/css/bootstrap.css"; // you should import bootstrap styles if you haven't done that before
 import "react-summernote/dist/react-summernote.css"; // import styles
 
 class RichTextEditor extends React.Component {

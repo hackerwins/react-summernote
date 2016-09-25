@@ -1,6 +1,10 @@
-#IDE
-.idea
-
-#NPM
+# dependencies
 node_modules
+
+# production
+dist
+lang
+
+# misc
+.DS_Store
 npm-debug.log
