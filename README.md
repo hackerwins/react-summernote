@@ -22,10 +22,14 @@ new webpack.ProvidePlugin({
 ```javascript
 import React from "react";
 import ReactSummernote from "react-summernote";
+import "react-summernote/dist/react-summernote.css"; // import styles
 import "react-summernote/lang/summernote-ru-RU"; // you can import any other locale
 
-import "bootstrap/dist/css/bootstrap.css"; // you should import bootstrap styles if you haven't done that before
-import "react-summernote/dist/react-summernote.css"; // import styles
+// Import bootstrap(v3 or v4) dependencies
+import "bootstrap/js/modal";
+import "bootstrap/js/dropdown";
+import "bootstrap/js/tooltip";
+import "bootstrap/dist/css/bootstrap.css";
 
 class RichTextEditor extends React.Component {
 	onChange(content) {
