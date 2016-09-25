@@ -37,7 +37,7 @@ class ReactSummernote extends React.Component {
 	}
 
 	componentDidMount() {
-		const options = this.props.options;
+		const options = this.props.options || {};
 		options.callbacks = this.callbacks;
 
 		this.editor = $(`#${this.uid}`);
