@@ -1,7 +1,15 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
   "rules": {
+    "react/forbid-prop-types": [2, { "forbid": ["any"] }],
+    "id-length": [1, { "min": 1 }],
     "comma-dangle": 0,
+    "arrow-parens": ["error", "as-needed"],
+    "consistent-return": [2, { "treatUndefinedAsUnspecified": true }],
+    "class-methods-use-this:": 0,
     "max-len": [2, 200, 2, {
       "ignoreUrls": true,
       "ignoreComments": false
