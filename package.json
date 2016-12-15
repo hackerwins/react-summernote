@@ -29,7 +29,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "summernote-webpack-fix": "^0.8.1",
+    "summernote": "^0.8.2",
     "codemirror": "^5.11.0"
   },
   "peerDependencies": {
