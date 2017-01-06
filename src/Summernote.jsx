@@ -1,9 +1,11 @@
 /* global $ */
 
-import 'summernote-webpack-fix/dist/summernote';
-import 'summernote-webpack-fix/dist/summernote.css';
+import 'summernote/dist/summernote';
+import 'summernote/dist/summernote.css';
 import 'codemirror/lib/codemirror.css';
 import React, { Component, PropTypes } from 'react';
+
+const randomUid = () => Math.floor(Math.random() * 1000);
 
 class ReactSummernote extends Component {
   static reset() {
@@ -25,7 +27,7 @@ class ReactSummernote extends Component {
   constructor(props) {
     super(props);
 
-    this.uid = `react-summernote-${Date.now()}`;
+    this.uid = `react-summernote-${randomUid()}`;
     this.editor = {};
 
     ReactSummernote.reset = ReactSummernote.reset.bind(this);
@@ -48,7 +50,10 @@ class ReactSummernote extends Component {
   }
 
   componentWillUnmount() {
-    if (this.editor) this.editor.summernote('destroy');
+    if (this.editor) {
+      this.editor.summernote('destroy');
+    }
+
     this.manageModalScroll(false);
   }
 

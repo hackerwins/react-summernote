@@ -38,7 +38,7 @@ module.exports = {
       jQuery: 'jquery'
     }),
     new CopyWebpackPlugin([{
-      from: 'node_modules/summernote-webpack-fix/dist/lang', to: '../lang'
+      from: 'node_modules/summernote/dist/lang', to: '../lang'
     }]),
     new ExtractTextPlugin('[name].css')
   ],
