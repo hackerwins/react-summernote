@@ -29,7 +29,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "summernote": "^0.8.2",
+    "summernote": "git+ssh://git@github.com:SalesLoft/summernote.git",
     "codemirror": "^5.11.0"
   },
   "peerDependencies": {
