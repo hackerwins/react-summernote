@@ -23,7 +23,7 @@ class ReactSummernote extends Component {
     this.isEmpty = this.isEmpty.bind(this);
     this.reset = this.reset.bind(this);
     this.replace = this.replace.bind(this);
-    this.disable = this.disable.biAdded value controlnd(this);
+    this.disable = this.disable.bind(this);
     this.enable = this.enable.bind(this);
     this.insertImage = this.insertImage.bind(this);
     this.insertNode = this.insertNode.bind(this);
