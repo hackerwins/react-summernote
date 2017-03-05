@@ -30,7 +30,12 @@ module.exports = {
       commonjs: 'react-dom',
       amd: 'react-dom'
     },
-    jquery: 'jquery'
+    jquery: {
+      root: '$',
+      commonjs2: 'jquery',
+      commonjs: 'jquery',
+      amd: 'jquery'
+    }
   }],
   plugins: [
     new webpack.ProvidePlugin({
