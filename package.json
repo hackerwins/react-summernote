@@ -1,6 +1,6 @@
 {
   "name": "react-summernote",
-  "version": "2.0.0-rc.9",
+  "version": "2.0.0-rc.10",
   "description": "Summernote (Super simple WYSIWYG editor) adaptation for react",
   "main": "./dist/react-summernote.js",
   "repository": {
@@ -30,8 +30,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "summernote": "^0.8.2",
-    "codemirror": "^5.23.0",
-    "node-libs-browser": "2.0.0"
+    "codemirror": "^5.23.0"
   },
   "peerDependencies": {
     "jquery": "^2.2.0 || ^3.0.0",
@@ -41,6 +40,7 @@
   },
   "devDependencies": {
     "webpack": "2.2.1",
+    "node-libs-browser": "2.0.0",
     "babel-core": "6.23.1",
     "babel-loader": "6.3.2",
     "babel-preset-es2015": "6.22.0",
