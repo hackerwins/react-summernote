@@ -5,12 +5,17 @@
 
 
 ### Getting Started
+
 #### Install
+
 ```
 npm install react-summernote
 ```
+
 #### Configure Webpack
+
 Add ProvidePlugin to your webpack config
+
 ```javascript
 new webpack.ProvidePlugin({
 	$: "jquery",
@@ -19,6 +24,7 @@ new webpack.ProvidePlugin({
 ```
 
 ### Example
+
 ```javascript
 import React, { Component } from 'react';
 import ReactSummernote from 'react-summernote';
@@ -64,28 +70,32 @@ export default RichTextEditor;
 ```
 
 ### PropTypes
-	Property	|	Type	|	Description
-:-----------------------|:--------------|:--------------------------------
-value | `String` | Default value
-options | `Object` | Options object. More info about options http://summernote.org/deep-dive
-onInit | `Function` | Being invoked when summernote is launched
-onEnter | `Function` | Enter/Return button pressed
-onFocus | `Function` | Editable area receives the focus
-onBlur | `Function` | Editable area loses the focus
-onKeyDown | `Function` | `e.keyCode` is pressed
-onKeyUp | `Function` | `e.keyCode` is released
-onPaste | `Function` | Triggers when event paste's been called
-onChange | `Function` | handler: `function(contents, $editable) {}`, invoked, when content's been changed
-onImageUpload | `Function` | handler: `function(files) {}`
+
+|  Property  |  Type  |  Description  |
+|------------|--------|---------------|
+| value | `String` | Default value |
+| options | `Object` | Options object. More info about options http://summernote.org/deep-dive |
+| onInit | `Function` | Being invoked when summernote is launched |
+| onEnter | `Function` | Enter/Return button pressed |
+| onFocus | `Function` | Editable area receives the focus |
+| onBlur | `Function` | Editable area loses the focus |
+| onKeyDown | `Function` | `e.keyCode` is pressed |
+| onKeyUp | `Function` | `e.keyCode` is released |
+| onPaste | `Function` | Triggers when event paste's been called |
+| onChange | `Function` | handler: `function(contents, $editable) {}`, invoked, when content's been changed |
+| onImageUpload | `Function` | handler: `function(files) {}` |
 
 ### Static methods
+
 ```javascript
 reset() // Clear contents and remove all stored history
 insertImage(url, filenameOrCallback) // Insert a image
 insertNode(node) // Insert a element or textnode
 insertText(text) // Insert a text
 ```
+
 ##### Example
+
 ```javascript
 ReactSummernote.insertImage(`/resources/getImage?imageGuid=${image.imageGuid}`, $image => {
 	$image.css("width", Math.floor($image.width() / 2));
