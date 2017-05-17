@@ -35,8 +35,9 @@
   "peerDependencies": {
     "jquery": "^2.2.0 || ^3.0.0",
     "bootstrap": "^3.3.6",
-    "react": "*",
-    "react-dom": "*"
+    "react": "^15.5.0",
+    "react-dom": "*",
+    "prop-types": "*"
   },
   "devDependencies": {
     "webpack": "2.2.1",
