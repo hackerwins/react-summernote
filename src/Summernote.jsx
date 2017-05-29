@@ -26,6 +26,7 @@ class ReactSummernote extends Component {
     this.replace = this.replace.bind(this);
     this.disable = this.disable.bind(this);
     this.enable = this.enable.bind(this);
+    this.toggleState = this.toggleState.bind(this);
     this.insertImage = this.insertImage.bind(this);
     this.insertNode = this.insertNode.bind(this);
     this.insertText = this.insertText.bind(this);
@@ -36,6 +37,7 @@ class ReactSummernote extends Component {
     ReactSummernote.replace = this.replace.bind(this);
     ReactSummernote.disable = this.disable.bind(this);
     ReactSummernote.enable = this.enable.bind(this);
+    ReactSummernote.toggleState = this.toggleState.bind(this);
     ReactSummernote.insertImage = this.insertImage.bind(this);
     ReactSummernote.insertNode = this.insertNode.bind(this);
     ReactSummernote.insertText = this.insertText.bind(this);
@@ -47,17 +49,17 @@ class ReactSummernote extends Component {
 
     this.editor = $(`#${this.uid}`);
     this.editor.summernote(options);
-    this.manageModalScroll(true);
   }
 
   componentWillReceiveProps(nextProps) {
     const { props } = this;
 
-    if (
-      typeof nextProps.value === 'string' &&
-      props.value !== nextProps.value
-    ) {
+    if (typeof nextProps.value === 'string' && props.value !== nextProps.value) {
       this.replace(nextProps.value);
+    }
+
+    if (typeof nextProps.disabled === 'boolean' && props.disabled !== nextProps.disabled) {
+      this.toggleState(nextProps.disabled);
     }
   }
 
@@ -69,16 +71,18 @@ class ReactSummernote extends Component {
     if (this.editor.summernote) {
       this.editor.summernote('destroy');
     }
-
-    this.manageModalScroll(false);
   }
 
   onInit() {
-    const { onInit } = this.props;
+    const { disabled, onInit } = this.props;
 
     const $container = this.editor.parent();
     this.noteEditable = $container.find('.note-editable');
     this.notePlaceholder = $container.find('.note-placeholder');
+
+    if (typeof disabled === 'boolean') {
+      this.toggleState(disabled);
+    }
 
     if (typeof onInit === 'function') {
       onInit({
@@ -140,6 +144,14 @@ class ReactSummernote extends Component {
     this.editor.summernote('enable');
   }
 
+  toggleState(disabled) {
+    if (disabled) {
+      this.disable();
+    } else {
+      this.enable();
+    }
+  }
+
   insertImage(url, filenameOrCallback) {
     this.editor.summernote('insertImage', url, filenameOrCallback);
   }
@@ -150,26 +162,6 @@ class ReactSummernote extends Component {
 
   insertText(text) {
     this.editor.summernote('insertText', text);
-  }
-
-  manageModalScroll(mount) {
-    const $body = $('body');
-    const $modal = $('.note-editor .modal');
-    let hasClassName = false;
-
-    if ($modal.length) {
-      if (mount) {
-        $modal.on('show.bs.modal', () => {
-          hasClassName = $body.hasClass('modal-open');
-        });
-        $modal.on('hidden.bs.modal', () => {
-          $body.toggleClass('modal-open', hasClassName);
-        });
-      } else {
-        $modal.off('show.bs.modal');
-        $modal.off('hidden.bs.modal');
-      }
-    }
   }
 
   get callbacks() {
@@ -205,6 +197,7 @@ ReactSummernote.propTypes = {
   defaultValue: PropTypes.string,
   className: PropTypes.string,
   options: PropTypes.object,
+  disabled: PropTypes.bool,
   onInit: PropTypes.func,
   onEnter: PropTypes.func,
   onFocus: PropTypes.func,
