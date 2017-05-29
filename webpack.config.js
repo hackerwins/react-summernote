@@ -48,22 +48,30 @@ module.exports = {
     new ExtractTextPlugin('[name].css')
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx$|\.js$/,
         exclude: /(node_modules)/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react']
-        }
+        use: [{
+          loader: 'babel-loader',
+          query: {
+            presets: ['es2015', 'react']
+          }
+        }]
       },
       {
         test: /\.(css)(\?.+)?$/,
-        loader: ExtractTextPlugin.extract('style', 'css')
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
       },
       {
         test: /\.(otf|eot|svg|ttf|woff|woff2)(\?.+)?$/,
-        loader: 'url-loader?limit=4096&name=[name].[ext]'
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 4096,
+            name: '[name].[ext]'
+          }
+        }]
       }
     ]
   }
