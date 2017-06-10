@@ -45,14 +45,23 @@ class ReactSummernote extends Component {
 
   componentDidMount() {
     const options = this.props.options || {};
+    const codeview = this.props.codeview;
+    // const codeviewCommand = codeview ? 'codeview.activate' : 'codeview.deactivate';
     options.callbacks = this.callbacks;
 
     this.editor = $(`#${this.uid}`);
     this.editor.summernote(options);
+    if (codeview) {
+      this.editor.summernote('codeview.activate');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     const { props } = this;
+
+    const codeview = nextProps.codeview;
+    const codeviewCommand = codeview ? 'codeview.activate' : 'codeview.deactivate';
+
 
     if (typeof nextProps.value === 'string' && props.value !== nextProps.value) {
       this.replace(nextProps.value);
@@ -60,6 +69,9 @@ class ReactSummernote extends Component {
 
     if (typeof nextProps.disabled === 'boolean' && props.disabled !== nextProps.disabled) {
       this.toggleState(nextProps.disabled);
+    }
+    if (codeview !== props.codeview) {
+      this.editor.summernote(codeviewCommand);
     }
   }
 
@@ -195,6 +207,7 @@ class ReactSummernote extends Component {
 ReactSummernote.propTypes = {
   value: PropTypes.string,
   defaultValue: PropTypes.string,
+  codeview: PropTypes.bool,
   className: PropTypes.string,
   options: PropTypes.object,
   disabled: PropTypes.bool,
