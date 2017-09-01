@@ -98,7 +98,7 @@ class ReactSummernote extends Component {
 
     if (typeof onInit === 'function') {
       onInit({
-        summernote: this.editor.summernote,
+        summernote: this.editor.summernote.bind(this.editor),
         focus: this.focus,
         isEmpty: this.isEmpty,
         reset: this.reset,
