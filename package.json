@@ -29,8 +29,9 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "summernote": "^0.8.2",
-    "codemirror": "^5.11.0"
+    "codemirror": "^5.11.0",
+    "prop-types": "^15.6.2",
+    "summernote": "^0.8.2"
   },
   "peerDependencies": {
     "jquery": "^2.2.0 || ^3.0.0",
