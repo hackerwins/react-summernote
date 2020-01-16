@@ -1,0 +1,640 @@
+/*!
+ * 
+ * Super simple wysiwyg editor v0.8.15
+ * https://summernote.org
+ * 
+ * 
+ * Copyright 2013- Alan Hong. and other contributors
+ * summernote may be freely distributed under the MIT license.
+ * 
+ * Date: 2020-01-04T11:44Z
+ * 
+ */
+@font-face {
+  font-family: "summernote";
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url(summernote.eot);
+  src: url(summernote.eot?#iefix) format("embedded-opentype"), url(summernote.woff2) format("woff2"), url(summernote.woff) format("woff"), url(summernote.ttf) format("truetype");}
+
+
+[class^="note-icon"]:before,
+[class*=" note-icon"]:before {
+  display: inline-block;
+  font-family: summernote;
+  font-style: normal;
+  font-size: inherit;
+  text-decoration: inherit;
+  text-rendering: auto;
+  text-transform: none;
+  vertical-align: middle;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  speak: none;
+}
+
+
+.note-icon-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.note-icon-border {
+  border: solid 0.08em #eee;
+  border-radius: 0.1em;
+  padding: 0.2em 0.25em 0.15em;
+}
+
+.note-icon-pull-left {
+  float: left;
+}
+
+.note-icon-pull-right {
+  float: right;
+}
+
+.note-icon.note-icon-pull-left {
+  margin-right: 0.3em;
+}
+
+.note-icon.note-icon-pull-right {
+  margin-left: 0.3em;
+}
+
+
+.note-icon-align::before {
+  content: "\EA01";
+}
+
+.note-icon-align-center::before {
+  content: "\EA02";
+}
+
+.note-icon-align-indent::before {
+  content: "\EA03";
+}
+
+.note-icon-align-justify::before {
+  content: "\EA04";
+}
+
+.note-icon-align-left::before {
+  content: "\EA05";
+}
+
+.note-icon-align-outdent::before {
+  content: "\EA06";
+}
+
+.note-icon-align-right::before {
+  content: "\EA07";
+}
+
+.note-icon-arrow-circle-down::before {
+  content: "\EA08";
+}
+
+.note-icon-arrow-circle-left::before {
+  content: "\EA09";
+}
+
+.note-icon-arrow-circle-right::before {
+  content: "\EA0A";
+}
+
+.note-icon-arrow-circle-up::before {
+  content: "\EA0B";
+}
+
+.note-icon-arrows-alt::before {
+  content: "\EA0C";
+}
+
+.note-icon-arrows-h::before {
+  content: "\EA0D";
+}
+
+.note-icon-arrows-v::before {
+  content: "\EA0E";
+}
+
+.note-icon-bold::before {
+  content: "\EA0F";
+}
+
+.note-icon-caret::before {
+  content: "\EA10";
+}
+
+.note-icon-chain-broken::before {
+  content: "\EA11";
+}
+
+.note-icon-circle::before {
+  content: "\EA12";
+}
+
+.note-icon-close::before {
+  content: "\EA13";
+}
+
+.note-icon-code::before {
+  content: "\EA14";
+}
+
+.note-icon-col-after::before {
+  content: "\EA15";
+}
+
+.note-icon-col-before::before {
+  content: "\EA16";
+}
+
+.note-icon-col-remove::before {
+  content: "\EA17";
+}
+
+.note-icon-eraser::before {
+  content: "\EA18";
+}
+
+.note-icon-float-left::before {
+  content: "\EA19";
+}
+
+.note-icon-float-none::before {
+  content: "\EA1A";
+}
+
+.note-icon-float-right::before {
+  content: "\EA1B";
+}
+
+.note-icon-font::before {
+  content: "\EA1C";
+}
+
+.note-icon-frame::before {
+  content: "\EA1D";
+}
+
+.note-icon-italic::before {
+  content: "\EA1E";
+}
+
+.note-icon-link::before {
+  content: "\EA1F";
+}
+
+.note-icon-magic::before {
+  content: "\EA20";
+}
+
+.note-icon-menu-check::before {
+  content: "\EA21";
+}
+
+.note-icon-minus::before {
+  content: "\EA22";
+}
+
+.note-icon-orderedlist::before {
+  content: "\EA23";
+}
+
+.note-icon-pencil::before {
+  content: "\EA24";
+}
+
+.note-icon-picture::before {
+  content: "\EA25";
+}
+
+.note-icon-question::before {
+  content: "\EA26";
+}
+
+.note-icon-redo::before {
+  content: "\EA27";
+}
+
+.note-icon-rollback::before {
+  content: "\EA28";
+}
+
+.note-icon-row-above::before {
+  content: "\EA29";
+}
+
+.note-icon-row-below::before {
+  content: "\EA2A";
+}
+
+.note-icon-row-remove::before {
+  content: "\EA2B";
+}
+
+.note-icon-special-character::before {
+  content: "\EA2C";
+}
+
+.note-icon-square::before {
+  content: "\EA2D";
+}
+
+.note-icon-strikethrough::before {
+  content: "\EA2E";
+}
+
+.note-icon-subscript::before {
+  content: "\EA2F";
+}
+
+.note-icon-summernote::before {
+  content: "\EA30";
+}
+
+.note-icon-superscript::before {
+  content: "\EA31";
+}
+
+.note-icon-table::before {
+  content: "\EA32";
+}
+
+.note-icon-text-height::before {
+  content: "\EA33";
+}
+
+.note-icon-trash::before {
+  content: "\EA34";
+}
+
+.note-icon-underline::before {
+  content: "\EA35";
+}
+
+.note-icon-undo::before {
+  content: "\EA36";
+}
+
+.note-icon-unorderedlist::before {
+  content: "\EA37";
+}
+
+.note-icon-video::before {
+  content: "\EA38";
+}
+
+
+.note-editor{position:relative}.note-editor .note-dropzone{position:absolute;display:none;z-index:100;color:#87cefa;background-color:#fff;opacity:.95}.note-editor .note-dropzone .note-dropzone-message{display:table-cell;vertical-align:middle;text-align:center;font-size:28px;font-weight:700}.note-editor .note-dropzone.hover{color:#098ddf}.note-editor.dragover .note-dropzone{display:table}.note-editor .note-editing-area{position:relative}.note-editor .note-editing-area .note-editable{outline:none}.note-editor .note-editing-area .note-editable sup{vertical-align:super}.note-editor .note-editing-area .note-editable sub{vertical-align:sub}.note-editor .note-editing-area .note-editable img.note-float-left{margin-right:10px}.note-editor .note-editing-area .note-editable img.note-float-right{margin-left:10px}.note-editor.note-frame,.note-editor.note-airframe{border:1px solid #a9a9a9}.note-editor.note-frame.codeview .note-editing-area .note-editable,.note-editor.note-airframe.codeview .note-editing-area .note-editable{display:none}.note-editor.note-frame.codeview .note-editing-area .note-codable,.note-editor.note-airframe.codeview .note-editing-area .note-codable{display:block}.note-editor.note-frame .note-editing-area,.note-editor.note-airframe .note-editing-area{overflow:hidden}.note-editor.note-frame .note-editing-area .note-editable,.note-editor.note-airframe .note-editing-area .note-editable{background-color:#fff;color:#000;padding:10px;overflow:auto;word-wrap:break-word}.note-editor.note-frame .note-editing-area .note-editable[contenteditable=false],.note-editor.note-airframe .note-editing-area .note-editable[contenteditable=false]{background-color:#e5e5e5}.note-editor.note-frame .note-editing-area .note-codable,.note-editor.note-airframe .note-editing-area .note-codable{display:none;width:100%;padding:10px;border:none;box-shadow:none;font-family:Menlo,Monaco,monospace,sans-serif;font-size:14px;color:#ccc;background-color:#222;resize:none;outline:none;-ms-box-sizing:border-box;box-sizing:border-box;border-radius:0;margin-bottom:0}.note-editor.note-frame.fullscreen,.note-editor.note-airframe.fullscreen{position:fixed;top:0;left:0;width:100% !important;z-index:1050}.note-editor.note-frame.fullscreen .note-editable,.note-editor.note-airframe.fullscreen .note-editable{background-color:#fff}.note-editor.note-frame.fullscreen .note-resizebar,.note-editor.note-airframe.fullscreen .note-resizebar{display:none}.note-editor.note-frame .note-status-output,.note-editor.note-airframe .note-status-output{display:block;width:100%;font-size:14px;line-height:1.42857143;height:20px;margin-bottom:0;color:#000;border:0;border-top:1px solid #e2e2e2}.note-editor.note-frame .note-status-output:empty,.note-editor.note-airframe .note-status-output:empty{height:0;border-top:0 solid transparent}.note-editor.note-frame .note-status-output .pull-right,.note-editor.note-airframe .note-status-output .pull-right{float:right !important}.note-editor.note-frame .note-status-output .text-muted,.note-editor.note-airframe .note-status-output .text-muted{color:#777}.note-editor.note-frame .note-status-output .text-primary,.note-editor.note-airframe .note-status-output .text-primary{color:#286090}.note-editor.note-frame .note-status-output .text-success,.note-editor.note-airframe .note-status-output .text-success{color:#3c763d}.note-editor.note-frame .note-status-output .text-info,.note-editor.note-airframe .note-status-output .text-info{color:#31708f}.note-editor.note-frame .note-status-output .text-warning,.note-editor.note-airframe .note-status-output .text-warning{color:#8a6d3b}.note-editor.note-frame .note-status-output .text-danger,.note-editor.note-airframe .note-status-output .text-danger{color:#a94442}.note-editor.note-frame .note-status-output .alert,.note-editor.note-airframe .note-status-output .alert{margin:-7px 0 0 0;padding:7px 10px 2px 10px;border-radius:0;color:#000;background-color:#f5f5f5}.note-editor.note-frame .note-status-output .alert .note-icon,.note-editor.note-airframe .note-status-output .alert .note-icon{margin-right:5px}.note-editor.note-frame .note-status-output .alert-success,.note-editor.note-airframe .note-status-output .alert-success{color:#3c763d !important;background-color:#dff0d8 !important}.note-editor.note-frame .note-status-output .alert-info,.note-editor.note-airframe .note-status-output .alert-info{color:#31708f !important;background-color:#d9edf7 !important}.note-editor.note-frame .note-status-output .alert-warning,.note-editor.note-airframe .note-status-output .alert-warning{color:#8a6d3b !important;background-color:#fcf8e3 !important}.note-editor.note-frame .note-status-output .alert-danger,.note-editor.note-airframe .note-status-output .alert-danger{color:#a94442 !important;background-color:#f2dede !important}.note-editor.note-frame .note-statusbar,.note-editor.note-airframe .note-statusbar{background-color:#f5f5f5;border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top:1px solid #ddd}.note-editor.note-frame .note-statusbar .note-resizebar,.note-editor.note-airframe .note-statusbar .note-resizebar{padding-top:1px;height:9px;width:100%;cursor:ns-resize}.note-editor.note-frame .note-statusbar .note-resizebar .note-icon-bar,.note-editor.note-airframe .note-statusbar .note-resizebar .note-icon-bar{width:20px;margin:1px auto;border-top:1px solid #a9a9a9}.note-editor.note-frame .note-statusbar.locked .note-resizebar,.note-editor.note-airframe .note-statusbar.locked .note-resizebar{cursor:default}.note-editor.note-frame .note-statusbar.locked .note-resizebar .note-icon-bar,.note-editor.note-airframe .note-statusbar.locked .note-resizebar .note-icon-bar{display:none}.note-editor.note-frame .note-placeholder,.note-editor.note-airframe .note-placeholder{padding:10px}.note-editor.note-airframe{border:0}.note-popover.popover{display:none;max-width:none}.note-popover.popover .popover-content a{display:inline-block;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}.note-popover.popover .arrow{left:20px !important}.note-toolbar{position:relative}.note-popover .popover-content,.note-toolbar{margin:0;padding:0 0 5px 5px}.note-popover .popover-content>.note-btn-group,.note-toolbar>.note-btn-group{margin-top:5px;margin-left:0;margin-right:5px}.note-popover .popover-content .note-btn-group .note-table,.note-toolbar .note-btn-group .note-table{min-width:0;padding:5px}.note-popover .popover-content .note-btn-group .note-table .note-dimension-picker,.note-toolbar .note-btn-group .note-table .note-dimension-picker{font-size:18px}.note-popover .popover-content .note-btn-group .note-table .note-dimension-picker .note-dimension-picker-mousecatcher,.note-toolbar .note-btn-group .note-table .note-dimension-picker .note-dimension-picker-mousecatcher{position:absolute !important;z-index:3;width:10em;height:10em;cursor:pointer}.note-popover .popover-content .note-btn-group .note-table .note-dimension-picker .note-dimension-picker-unhighlighted,.note-toolbar .note-btn-group .note-table .note-dimension-picker .note-dimension-picker-unhighlighted{position:relative !important;z-index:1;width:5em;height:5em;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIj4+Pjp6ekKlAqjAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKhmnaJzPAAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC") repeat}.note-popover .popover-content .note-btn-group .note-table .note-dimension-picker .note-dimension-picker-highlighted,.note-toolbar .note-btn-group .note-table .note-dimension-picker .note-dimension-picker-highlighted{position:absolute !important;z-index:2;width:1em;height:1em;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIjd6vvD2f9LKLW+AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKwNDEVT0AAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC") repeat}.note-popover .popover-content .note-style .dropdown-style blockquote,.note-popover .popover-content .note-style .dropdown-style pre,.note-toolbar .note-style .dropdown-style blockquote,.note-toolbar .note-style .dropdown-style pre{margin:0;padding:5px 10px}.note-popover .popover-content .note-style .dropdown-style h1,.note-popover .popover-content .note-style .dropdown-style h2,.note-popover .popover-content .note-style .dropdown-style h3,.note-popover .popover-content .note-style .dropdown-style h4,.note-popover .popover-content .note-style .dropdown-style h5,.note-popover .popover-content .note-style .dropdown-style h6,.note-popover .popover-content .note-style .dropdown-style p,.note-toolbar .note-style .dropdown-style h1,.note-toolbar .note-style .dropdown-style h2,.note-toolbar .note-style .dropdown-style h3,.note-toolbar .note-style .dropdown-style h4,.note-toolbar .note-style .dropdown-style h5,.note-toolbar .note-style .dropdown-style h6,.note-toolbar .note-style .dropdown-style p{margin:0;padding:0}.note-popover .popover-content .note-color-all .note-dropdown-menu,.note-toolbar .note-color-all .note-dropdown-menu{min-width:337px}.note-popover .popover-content .note-color .dropdown-toggle,.note-toolbar .note-color .dropdown-toggle{width:20px;padding-left:5px}.note-popover .popover-content .note-color .note-dropdown-menu .note-palette,.note-toolbar .note-color .note-dropdown-menu .note-palette{display:inline-block;margin:0;width:160px}.note-popover .popover-content .note-color .note-dropdown-menu .note-palette:first-child,.note-toolbar .note-color .note-dropdown-menu .note-palette:first-child{margin:0 5px}.note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-palette-title,.note-toolbar .note-color .note-dropdown-menu .note-palette .note-palette-title{font-size:12px;margin:2px 7px;text-align:center;border-bottom:1px solid #eee}.note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-reset,.note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-select,.note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-reset,.note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-select{font-size:11px;margin:3px;padding:0 3px;cursor:pointer;border-radius:5px}.note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-row,.note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-row{height:20px}.note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-reset:hover,.note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-reset:hover{background:#eee}.note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-select-btn,.note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-select-btn{display:none}.note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-holder-custom .note-color-btn,.note-toolbar .note-color .note-dropdown-menu .note-palette .note-holder-custom .note-color-btn{border:1px solid #eee}.note-popover .popover-content .note-para .note-dropdown-menu,.note-toolbar .note-para .note-dropdown-menu{min-width:216px;padding:5px}.note-popover .popover-content .note-para .note-dropdown-menu>div:first-child,.note-toolbar .note-para .note-dropdown-menu>div:first-child{margin-right:5px}.note-popover .popover-content .note-dropdown-menu,.note-toolbar .note-dropdown-menu{min-width:160px}.note-popover .popover-content .note-dropdown-menu.right,.note-toolbar .note-dropdown-menu.right{right:0;left:auto}.note-popover .popover-content .note-dropdown-menu.right::before,.note-toolbar .note-dropdown-menu.right::before{right:9px;left:auto !important}.note-popover .popover-content .note-dropdown-menu.right::after,.note-toolbar .note-dropdown-menu.right::after{right:10px;left:auto !important}.note-popover .popover-content .note-dropdown-menu.note-check a i,.note-toolbar .note-dropdown-menu.note-check a i{color:#00bfff;visibility:hidden}.note-popover .popover-content .note-dropdown-menu.note-check a.checked i,.note-toolbar .note-dropdown-menu.note-check a.checked i{visibility:visible}.note-popover .popover-content .note-fontsize-10,.note-toolbar .note-fontsize-10{font-size:10px}.note-popover .popover-content .note-color-palette,.note-toolbar .note-color-palette{line-height:1}.note-popover .popover-content .note-color-palette div .note-color-btn,.note-toolbar .note-color-palette div .note-color-btn{width:20px;height:20px;padding:0;margin:0;border:1px solid #fff}.note-popover .popover-content .note-color-palette div .note-color-btn:hover,.note-toolbar .note-color-palette div .note-color-btn:hover{border:1px solid #000}.note-modal .modal-dialog{outline:0;border-radius:5px;box-shadow:0 3px 9px rgba(0,0,0,.5)}.note-modal .form-group{margin-left:0;margin-right:0}.note-modal .note-modal-form{margin:0}.note-modal .note-image-dialog .note-dropzone{min-height:100px;font-size:30px;line-height:4;color:#d3d3d3;text-align:center;border:4px dashed #d3d3d3;margin-bottom:10px}@-moz-document url-prefix(){.note-modal .note-image-input{height:auto}}.note-placeholder{position:absolute;display:none;color:gray}.note-handle .note-control-selection{position:absolute;display:none;border:1px solid #000}.note-handle .note-control-selection>div{position:absolute}.note-handle .note-control-selection .note-control-selection-bg{width:100%;height:100%;background-color:#000;-webkit-opacity:.3;-khtml-opacity:.3;-moz-opacity:.3;opacity:.3;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30);filter:alpha(opacity=30)}.note-handle .note-control-selection .note-control-handle,.note-handle .note-control-selection .note-control-sizing,.note-handle .note-control-selection .note-control-holder{width:7px;height:7px;border:1px solid #000}.note-handle .note-control-selection .note-control-sizing{background-color:#000}.note-handle .note-control-selection .note-control-nw{top:-5px;left:-5px;border-right:none;border-bottom:none}.note-handle .note-control-selection .note-control-ne{top:-5px;right:-5px;border-bottom:none;border-left:none}.note-handle .note-control-selection .note-control-sw{bottom:-5px;left:-5px;border-top:none;border-right:none}.note-handle .note-control-selection .note-control-se{right:-5px;bottom:-5px;cursor:se-resize}.note-handle .note-control-selection .note-control-se.note-control-holder{cursor:default;border-top:none;border-left:none}.note-handle .note-control-selection .note-control-selection-info{right:0;bottom:0;padding:5px;margin:5px;color:#fff;background-color:#000;font-size:12px;border-radius:5px;-webkit-opacity:.7;-khtml-opacity:.7;-moz-opacity:.7;opacity:.7;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);filter:alpha(opacity=70)}.note-hint-popover{min-width:100px;padding:2px}.note-hint-popover .popover-content{padding:3px;max-height:150px;overflow:auto}.note-hint-popover .popover-content .note-hint-group .note-hint-item{display:block !important;padding:3px}.note-hint-popover .popover-content .note-hint-group .note-hint-item.active,.note-hint-popover .popover-content .note-hint-group .note-hint-item:hover{display:block;clear:both;font-weight:400;line-height:1.4;color:#fff;white-space:nowrap;text-decoration:none;background-color:#428bca;outline:0;cursor:pointer}
+/* BASICS */
+
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  font-family: monospace;
+  height: 300px;
+  color: black;
+  direction: ltr;
+}
+
+/* PADDING */
+
+.CodeMirror-lines {
+  padding: 4px 0; /* Vertical padding around content */
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  padding: 0 4px; /* Horizontal padding of content */
+}
+
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  background-color: white; /* The little square between H and V scrollbars */
+}
+
+/* GUTTER */
+
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd;
+  background-color: #f7f7f7;
+  white-space: nowrap;
+}
+.CodeMirror-linenumbers {}
+.CodeMirror-linenumber {
+  padding: 0 3px 0 5px;
+  min-width: 20px;
+  text-align: right;
+  color: #999;
+  white-space: nowrap;
+}
+
+.CodeMirror-guttermarker { color: black; }
+.CodeMirror-guttermarker-subtle { color: #999; }
+
+/* CURSOR */
+
+.CodeMirror-cursor {
+  border-left: 1px solid black;
+  border-right: none;
+  width: 0;
+}
+/* Shown when moving in bi-directional text */
+.CodeMirror div.CodeMirror-secondarycursor {
+  border-left: 1px solid silver;
+}
+.cm-fat-cursor .CodeMirror-cursor {
+  width: auto;
+  border: 0 !important;
+  background: #7e7;
+}
+.cm-fat-cursor div.CodeMirror-cursors {
+  z-index: 1;
+}
+.cm-fat-cursor-mark {
+  background-color: rgba(20, 255, 20, 0.5);
+  -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
+  animation: blink 1.06s steps(1) infinite;
+}
+.cm-animate-fat-cursor {
+  width: auto;
+  border: 0;
+  -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
+  animation: blink 1.06s steps(1) infinite;
+  background-color: #7e7;
+}
+@-moz-keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+@-webkit-keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+@keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+
+/* Can style cursor different in overwrite (non-insert) mode */
+.CodeMirror-overwrite .CodeMirror-cursor {}
+
+.cm-tab { display: inline-block; text-decoration: inherit; }
+
+.CodeMirror-rulers {
+  position: absolute;
+  left: 0; right: 0; top: -50px; bottom: 0;
+  overflow: hidden;
+}
+.CodeMirror-ruler {
+  border-left: 1px solid #ccc;
+  top: 0; bottom: 0;
+  position: absolute;
+}
+
+/* DEFAULT THEME */
+
+.cm-s-default .cm-header {color: blue;}
+.cm-s-default .cm-quote {color: #090;}
+.cm-negative {color: #d44;}
+.cm-positive {color: #292;}
+.cm-header, .cm-strong {font-weight: bold;}
+.cm-em {font-style: italic;}
+.cm-link {text-decoration: underline;}
+.cm-strikethrough {text-decoration: line-through;}
+
+.cm-s-default .cm-keyword {color: #708;}
+.cm-s-default .cm-atom {color: #219;}
+.cm-s-default .cm-number {color: #164;}
+.cm-s-default .cm-def {color: #00f;}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable-2 {color: #05a;}
+.cm-s-default .cm-variable-3, .cm-s-default .cm-type {color: #085;}
+.cm-s-default .cm-comment {color: #a50;}
+.cm-s-default .cm-string {color: #a11;}
+.cm-s-default .cm-string-2 {color: #f50;}
+.cm-s-default .cm-meta {color: #555;}
+.cm-s-default .cm-qualifier {color: #555;}
+.cm-s-default .cm-builtin {color: #30a;}
+.cm-s-default .cm-bracket {color: #997;}
+.cm-s-default .cm-tag {color: #170;}
+.cm-s-default .cm-attribute {color: #00c;}
+.cm-s-default .cm-hr {color: #999;}
+.cm-s-default .cm-link {color: #00c;}
+
+.cm-s-default .cm-error {color: #f00;}
+.cm-invalidchar {color: #f00;}
+
+.CodeMirror-composing { border-bottom: 2px solid; }
+
+/* Default styles for common addons */
+
+div.CodeMirror span.CodeMirror-matchingbracket {color: #0b0;}
+div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
+.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }
+.CodeMirror-activeline-background {background: #e8f2ff;}
+
+/* STOP */
+
+/* The rest of this file contains styles related to the mechanics of
+   the editor. You probably shouldn't touch them. */
+
+.CodeMirror {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.CodeMirror-scroll {
+  overflow: scroll !important; /* Things will break if this is overridden */
+  /* 30px is the magic margin used to hide the element's real scrollbars */
+  /* See overflow: hidden in .CodeMirror */
+  margin-bottom: -30px; margin-right: -30px;
+  padding-bottom: 30px;
+  height: 100%;
+  outline: none; /* Prevent dragging from highlighting the element */
+  position: relative;
+}
+.CodeMirror-sizer {
+  position: relative;
+  border-right: 30px solid transparent;
+}
+
+/* The fake, visible scrollbars. Used to force redraw during scrolling
+   before actual scrolling happens, thus preventing shaking and
+   flickering artifacts. */
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  position: absolute;
+  z-index: 6;
+  display: none;
+}
+.CodeMirror-vscrollbar {
+  right: 0; top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.CodeMirror-hscrollbar {
+  bottom: 0; left: 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.CodeMirror-scrollbar-filler {
+  right: 0; bottom: 0;
+}
+.CodeMirror-gutter-filler {
+  left: 0; bottom: 0;
+}
+
+.CodeMirror-gutters {
+  position: absolute; left: 0; top: 0;
+  min-height: 100%;
+  z-index: 3;
+}
+.CodeMirror-gutter {
+  white-space: normal;
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: -30px;
+}
+.CodeMirror-gutter-wrapper {
+  position: absolute;
+  z-index: 4;
+  background: none !important;
+  border: none !important;
+}
+.CodeMirror-gutter-background {
+  position: absolute;
+  top: 0; bottom: 0;
+  z-index: 4;
+}
+.CodeMirror-gutter-elt {
+  position: absolute;
+  cursor: default;
+  z-index: 4;
+}
+.CodeMirror-gutter-wrapper ::selection { background-color: transparent }
+.CodeMirror-gutter-wrapper ::-moz-selection { background-color: transparent }
+
+.CodeMirror-lines {
+  cursor: text;
+  min-height: 1px; /* prevents collapsing before first draw */
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  /* Reset some styles that the rest of the page might have set */
+  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+  border-width: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  white-space: pre;
+  word-wrap: normal;
+  line-height: inherit;
+  color: inherit;
+  z-index: 2;
+  position: relative;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
+}
+.CodeMirror-wrap pre.CodeMirror-line,
+.CodeMirror-wrap pre.CodeMirror-line-like {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+
+.CodeMirror-linebackground {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 0;
+}
+
+.CodeMirror-linewidget {
+  position: relative;
+  z-index: 2;
+  padding: 0.1px; /* Force widget margins to stay inside of the container */
+}
+
+.CodeMirror-widget {}
+
+.CodeMirror-rtl pre { direction: rtl; }
+
+.CodeMirror-code {
+  outline: none;
+}
+
+/* Force content-box sizing for the elements where we expect it */
+.CodeMirror-scroll,
+.CodeMirror-sizer,
+.CodeMirror-gutter,
+.CodeMirror-gutters,
+.CodeMirror-linenumber {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.CodeMirror-measure {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.CodeMirror-cursor {
+  position: absolute;
+  pointer-events: none;
+}
+.CodeMirror-measure pre { position: static; }
+
+div.CodeMirror-cursors {
+  visibility: hidden;
+  position: relative;
+  z-index: 3;
+}
+div.CodeMirror-dragcursors {
+  visibility: visible;
+}
+
+.CodeMirror-focused div.CodeMirror-cursors {
+  visibility: visible;
+}
+
+.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
+.CodeMirror-crosshair { cursor: crosshair; }
+.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }
+.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
+
+.cm-searching {
+  background-color: #ffa;
+  background-color: rgba(255, 255, 0, .4);
+}
+
+/* Used to force a border model for a node */
+.cm-force-border { padding-right: .1px; }
+
+@media print {
+  /* Hide the cursor when printing */
+  .CodeMirror div.CodeMirror-cursors {
+    visibility: hidden;
+  }
+}
+
+/* See issue #2901 */
+.cm-tab-wrap-hack:after { content: ''; }
+
+/* Help users use markselection to safely style text background */
+span.CodeMirror-selectedtext { background: none; }
