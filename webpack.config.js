@@ -51,11 +51,11 @@ module.exports = {
     rules: [
       {
         test: /\.jsx$|\.js$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules\/(?!(summernote)\/).*/,
         use: [{
           loader: 'babel-loader',
           query: {
-            presets: ['es2015', 'react']
+            presets: ['es2015-ie', 'es2015', 'react']
           }
         }]
       },
