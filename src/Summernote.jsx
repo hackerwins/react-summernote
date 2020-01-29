@@ -54,6 +54,9 @@ class ReactSummernote extends Component {
     if (codeview) {
       this.editor.summernote('codeview.activate');
     }
+    if(this.props.value) {
+      this.replace(this.props.value)
+    }
   }
 
   componentWillReceiveProps(nextProps) {
