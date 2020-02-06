@@ -137,6 +137,10 @@ class ReactSummernote extends Component {
 
   replace(content) {
     const { noteEditable, notePlaceholder } = this;
+
+    if(!noteEditable)
+      return;
+
     const prevContent = noteEditable.html();
     const contentLength = content.length;
 

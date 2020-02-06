@@ -11287,6 +11287,9 @@ var ReactSummernote = function (_Component) {
       var noteEditable = this.noteEditable,
           notePlaceholder = this.notePlaceholder;
 
+
+      if (!noteEditable) return;
+
       var prevContent = noteEditable.html();
       var contentLength = content.length;
 
