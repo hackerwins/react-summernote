@@ -56,7 +56,7 @@ class ReactSummernote extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { props } = this;
 
     const codeview = nextProps.codeview;
