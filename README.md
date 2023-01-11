@@ -84,6 +84,7 @@ export default RichTextEditor;
 | onKeyUp | `Function` | `e.keyCode` is released |
 | onPaste | `Function` | Triggers when event paste's been called |
 | onChange | `Function` | handler: `function(contents, $editable) {}`, invoked, when content's been changed |
+| onChangeCodeView | `Function` | handler: `function(contents) {}`, invoked, when content's been changed in codeview |
 | onImageUpload | `Function` | handler: `function(files) {}` |
 
 ### Static methods
