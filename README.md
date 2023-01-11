@@ -45,7 +45,7 @@ class RichTextEditor extends Component {
   render() {
     return (
       <ReactSummernote
-        value="Default value"
+        children="Default value"
         options={{
           lang: 'ru-RU',
           height: 350,
@@ -73,7 +73,7 @@ export default RichTextEditor;
 
 |  Property  |  Type  |  Description  |
 |------------|--------|---------------|
-| value | `String` | Default value |
+| children | `String` | Default value |
 | codeview | `Boolean` | Option to render in codeview mode |
 | options | `Object` | Options object. More info about options http://summernote.org/deep-dive |
 | onInit | `Function` | Being invoked when summernote is launched |
