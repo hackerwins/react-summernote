@@ -173,7 +173,9 @@ class ReactSummernote extends Component {
   }
 
   insertText(text) {
-    this.editor.summernote('insertText', text);
+    this.editor.summernote('restoreRange');
+    this.editor.summernote('editor.insertText', text);
+    this.editor.summernote('saveRange');
   }
 
   get callbacks() {
